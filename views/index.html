@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>File Metadata Microservice</title>
+  <meta name="description" content="File Metadata Microservice">
+  <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.rawgit.com/Chalarangelo/mini.css/v2.1.0/dist/mini-default.min.css">
+</head>
+
+<body class="container">
+  <header>
+    <h1>
+        File Metadata Microservice
+      </h1>
+  </header>
+
+  <main>
+    <p>
+      When uploading a file, the size of the file is returned in a JSON response. Because, this is just a learning project, file sizes are limited to 20 Mb.
+    </p>
+
+    <form action="/file-size" method="post" enctype="multipart/form-data">
+      <fieldset>
+        <div class="input-group">
+          <input type="file" id="file-input" name="upload">
+          <label for="file-input" class="button">Upload file...</label>
+          <input readonly id="file-name" value="No file selected" active="false">
+          <input type="submit" id="submit-file">
+        </div>
+      </fieldset>
+    </form>
+  </main>
+  <footer>
+    <p style="text-align: center">made by <a href="https://zelite.github.io/">Zelite</a></p>
+  </footer>
+  <script>
+    var input = document.getElementById("file-input");
+    var label = document.getElementById("file-name")
+    input.addEventListener("change", function() {
+      if (input.value !== '') {
+        label.value = input.files[0].name;
+      } else {
+        label.value = "No file selected";
+      }
+    })
+  </script>
+</body>
+
+</html>
