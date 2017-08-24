@@ -17,12 +17,15 @@ app.get("/", function(request, response, next){
 })
 
 app.post("/file-size", upload.single('upload'), function(request, response, next){
+  if(request.file ==  undefined){
+    response.status(400).send("You did not provide a file.");
+  };
   response.json({size: request.file.size});
 })
 
 app.use(function(err, req, res, next){
   if(err.message === "File too large"){
-    res.send("The file you are trying to check is too big. Try again with something smaller.");
+    res.status(403).send("The file you are trying to check is too big. Try again with something smaller.");
   }else{
     next(err);
   }
